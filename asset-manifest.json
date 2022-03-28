@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/merge-files/static/css/main.2371ffa0.chunk.css",
+    "main.js": "/merge-files/static/js/main.b5ce83ad.chunk.js",
+    "main.js.map": "/merge-files/static/js/main.b5ce83ad.chunk.js.map",
+    "runtime-main.js": "/merge-files/static/js/runtime-main.b8b76bfa.js",
+    "runtime-main.js.map": "/merge-files/static/js/runtime-main.b8b76bfa.js.map",
+    "static/css/2.1e6c17d9.chunk.css": "/merge-files/static/css/2.1e6c17d9.chunk.css",
+    "static/js/2.ffdfc604.chunk.js": "/merge-files/static/js/2.ffdfc604.chunk.js",
+    "static/js/2.ffdfc604.chunk.js.map": "/merge-files/static/js/2.ffdfc604.chunk.js.map",
+    "static/js/3.6477210a.chunk.js": "/merge-files/static/js/3.6477210a.chunk.js",
+    "static/js/3.6477210a.chunk.js.map": "/merge-files/static/js/3.6477210a.chunk.js.map",
+    "index.html": "/merge-files/index.html",
+    "static/css/2.1e6c17d9.chunk.css.map": "/merge-files/static/css/2.1e6c17d9.chunk.css.map",
+    "static/css/main.2371ffa0.chunk.css.map": "/merge-files/static/css/main.2371ffa0.chunk.css.map",
+    "static/js/2.ffdfc604.chunk.js.LICENSE.txt": "/merge-files/static/js/2.ffdfc604.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/merge-files/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8b76bfa.js",
+    "static/css/2.1e6c17d9.chunk.css",
+    "static/js/2.ffdfc604.chunk.js",
+    "static/css/main.2371ffa0.chunk.css",
+    "static/js/main.b5ce83ad.chunk.js"
+  ]
+}
