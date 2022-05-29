@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import jsonData from "../db.json";
+// import jsonData from "../db.json";
 
 const Table = ({ tableData }) => {
+  const [jsonData, setJsonData] = useState([]);
   function CopyToClipboard(id) {
     var r = document.createRange();
     r.selectNode(document.getElementById(id));
@@ -13,6 +14,16 @@ const Table = ({ tableData }) => {
     toast("copy to clipboard");
   }
 
+  useEffect(() => {
+    fetch("https://629224419d159855f0865064.mockapi.io/testapi")
+      .then((data) => {
+        setJsonData(data.json());
+      })
+      .then((post) => {
+        console.log(post.title);
+      });
+  }, []);
+
   const sendMessage = (PartyName, Bill, Cash) => {
     let message = `Dear Sir,
     an amount is Due
@@ -20,15 +31,16 @@ const Table = ({ tableData }) => {
     CASH Rs *${Cash == 0 ? "00" : Cash}*
     please take into consideration`;
     encodeURI(message);
-
-    jsonData.find(({ NAME, NUMBER }) => {
-      if (NAME == PartyName) {
-        window.open(
-          `https://wa.me/91${NUMBER}?text=${encodeURI(message)}`,
-          "_blank"
-        );
-      }
-    });
+    if (jsonData.length !== 0) {
+      jsonData.find(({ NAME, NUMBER }) => {
+        if (NAME !== "Name NaN" && NAME == PartyName) {
+          window.open(
+            `https://wa.me/91${NUMBER}?text=${encodeURI(message)}`,
+            "_blank"
+          );
+        }
+      });
+    }
   };
 
   return (
