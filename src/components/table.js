@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 
 const Table = ({ tableData }) => {
   const [jsonData, setJsonData] = useState([]);
+  const [jsonData1, setJsonData1] = useState([]);
+
   function CopyToClipboard(id) {
     var r = document.createRange();
     r.selectNode(document.getElementById(id));
@@ -14,14 +16,16 @@ const Table = ({ tableData }) => {
     toast("copy to clipboard");
   }
 
-  useEffect(() => {
-    fetch("https://629224419d159855f0865064.mockapi.io/testapi")
-      .then((data) => {
-        setJsonData(data.json());
-      })
-      .then((post) => {
-        console.log(post.title);
-      });
+  useEffect(async () => {
+    await fetch("https://629224419d159855f0865064.mockapi.io/testapi")
+      .then((response) => response.json())
+      .then((data) => setJsonData(data))
+      .catch((err) => console.log(err));
+
+    await fetch("https://629224419d159855f0865064.mockapi.io/test1api")
+      .then((response) => response.json())
+      .then((data) => setJsonData1(data))
+      .catch((err) => console.log(err));
   }, []);
 
   const sendMessage = (PartyName, Bill, Cash) => {
@@ -33,7 +37,17 @@ const Table = ({ tableData }) => {
     encodeURI(message);
     if (jsonData.length !== 0) {
       jsonData.find(({ NAME, NUMBER }) => {
-        if (NAME !== "Name NaN" && NAME == PartyName) {
+        if (NAME == PartyName) {
+          window.open(
+            `https://wa.me/91${NUMBER}?text=${encodeURI(message)}`,
+            "_blank"
+          );
+        }
+      });
+    }
+    if (jsonData1.length !== 0) {
+      jsonData1.find(({ NAME, NUMBER }) => {
+        if (NAME == PartyName) {
           window.open(
             `https://wa.me/91${NUMBER}?text=${encodeURI(message)}`,
             "_blank"
