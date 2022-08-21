@@ -56,6 +56,16 @@ const Table = ({ tableData }) => {
       });
     }
   };
+  const getNumber = (PartyNmae) => {
+    let partyData = [...jsonData, ...jsonData1];
+    let partyNumber = [];
+    if (partyData.length !== 0) {
+      partyNumber = partyData.find(({ NAME, NUMBER }) => {
+        if (NAME === PartyNmae) return NUMBER;
+      });
+    }
+    if (partyNumber !== undefined) return partyNumber.NUMBER;
+  };
 
   return (
     <>
@@ -69,6 +79,7 @@ const Table = ({ tableData }) => {
                 <th scope="col">Cash</th>
                 <th scope="col">TotalAmount</th>
                 {window.innerWidth > 800 && <th scope="col">Message</th>}
+                <th>Number</th>
               </tr>
             </thead>
             <tbody>
@@ -98,6 +109,7 @@ const Table = ({ tableData }) => {
                       </div>
                     </td>
                   )}
+                  <td>{getNumber(PartyName)}</td>
                 </tr>
               ))}
             </tbody>
