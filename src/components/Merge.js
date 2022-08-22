@@ -5,6 +5,8 @@ import Table from "./table";
 const Merge = ({ withData, withOutData }) => {
   const [finalData, setFinalData] = useState([]);
   const [data, setData] = useState([]);
+  const [jsonData, setJsonData] = useState([]);
+  const [jsonData1, setJsonData1] = useState([]);
 
   function mergeArray(arr) {
     var outputObj = {};
@@ -38,6 +40,9 @@ const Merge = ({ withData, withOutData }) => {
 
   useEffect(() => {
     let finalResult = [];
+    let partyData = [...jsonData, ...jsonData1];
+    let partyNumber = [];
+
     if (data.length != 0) {
       data.map(({ name, amt, amt1 }) => {
         if (
@@ -45,10 +50,16 @@ const Merge = ({ withData, withOutData }) => {
             (amt == undefined ? 0 : parseInt(amt)) !=
           0
         ) {
+          if (partyData.length !== 0) {
+            partyNumber = partyData.find(({ NAME, NUMBER }) => {
+              if (NAME === name) return NUMBER;
+            });
+          }
           finalResult.push({
             PartyName: name,
             Bill: amt1 == undefined ? 0 : parseInt(amt1),
             Cash: amt == undefined ? 0 : parseInt(amt),
+            ContactNumbe: partyNumber !== undefined ? partyNumber.NUMBER : "",
             TotalAmount:
               (amt1 == undefined ? 0 : parseInt(amt1)) +
               (amt == undefined ? 0 : parseInt(amt)),
@@ -63,8 +74,6 @@ const Merge = ({ withData, withOutData }) => {
     var index = finalResult.findIndex((p) => p.PartyName == "Grand Total");
     finalResult.push(finalResult.splice(index, 1)[0]);
     setFinalData(finalResult);
-
-    console.log(finalResult);
   }, [data]);
 
   const monthNames = [
@@ -105,10 +114,17 @@ const Merge = ({ withData, withOutData }) => {
             <ExcelColumn label="Bill" value="Bill" />
             <ExcelColumn label="Cash" value="Cash" />
             <ExcelColumn label="TotalAmount" value="TotalAmount" />
+            <ExcelColumn label="ContactNumbe" value="ContactNumbe" />
           </ExcelSheet>
         </ExcelFile>
       </div>
-      <Table tableData={finalData} />
+      <Table
+        tableData={finalData}
+        jsonData={jsonData}
+        setJsonData={setJsonData}
+        jsonData1={jsonData1}
+        setJsonData1={setJsonData1}
+      />
     </>
   );
 };

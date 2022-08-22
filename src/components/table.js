@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 // import jsonData from "../db.json";
 
-const Table = ({ tableData }) => {
-  const [jsonData, setJsonData] = useState([]);
-  const [jsonData1, setJsonData1] = useState([]);
-
+const Table = ({
+  tableData,
+  jsonData,
+  setJsonData,
+  jsonData1,
+  setJsonData1,
+}) => {
   function CopyToClipboard(id) {
     var r = document.createRange();
     r.selectNode(document.getElementById(id));
@@ -56,16 +59,16 @@ const Table = ({ tableData }) => {
       });
     }
   };
-  const getNumber = (PartyNmae) => {
-    let partyData = [...jsonData, ...jsonData1];
-    let partyNumber = [];
-    if (partyData.length !== 0) {
-      partyNumber = partyData.find(({ NAME, NUMBER }) => {
-        if (NAME === PartyNmae) return NUMBER;
-      });
-    }
-    if (partyNumber !== undefined) return partyNumber.NUMBER;
-  };
+  // const getNumber = (PartyNmae) => {
+  //   let partyData = [...jsonData, ...jsonData1];
+  //   let partyNumber = [];
+  //   if (partyData.length !== 0) {
+  //     partyNumber = partyData.find(({ NAME, NUMBER }) => {
+  //       if (NAME === PartyNmae) return NUMBER;
+  //     });
+  //   }
+  //   if (partyNumber !== undefined) return partyNumber.NUMBER;
+  // };
 
   return (
     <>
@@ -79,7 +82,7 @@ const Table = ({ tableData }) => {
                 <th scope="col">Cash</th>
                 <th scope="col">TotalAmount</th>
                 {window.innerWidth > 800 && <th scope="col">Message</th>}
-                <th>Number</th>
+                {/* <th>Number</th> */}
               </tr>
             </thead>
             <tbody>
@@ -109,7 +112,7 @@ const Table = ({ tableData }) => {
                       </div>
                     </td>
                   )}
-                  <td>{getNumber(PartyName)}</td>
+                  {/* <td>{getNumber(PartyName)}</td> */}
                 </tr>
               ))}
             </tbody>
