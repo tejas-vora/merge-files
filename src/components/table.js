@@ -34,8 +34,8 @@ const Table = ({
   const sendMessage = (PartyName, Bill, Cash) => {
     let message = `Dear Sir,
     an amount is Due
-    ${Bill != 0 && `BILL Rs *${Bill}*`}
-    ${Cash != 0 && `CASH Rs *${Cash}*`}
+    ${Bill != 0 ? `BILL Rs *${Bill}*` : ""}
+    ${Cash != 0 ? `CASH Rs *${Cash}*` : ""}
     please take into consideration`;
     encodeURI(message);
     if (jsonData.length !== 0) {
