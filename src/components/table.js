@@ -34,9 +34,22 @@ const Table = ({
   const sendMessage = (PartyName, Bill, Cash) => {
     let message = `Dear Sir,
     an amount is Due
-    ${Bill != 0 ? `BILL Rs *${Bill}*` : ""}
-    ${Cash != 0 ? `CASH Rs *${Cash}*` : ""}
+    BILL Rs *${Bill == 0 ? "00" : Bill}*
+    CASH Rs *${Cash == 0 ? "00" : Cash}*
     please take into consideration`;
+    if (Bill == 0) {
+      message = `Dear Sir,
+    an amount is Due
+    CASH Rs *${Cash == 0 ? "00" : Cash}*
+    please take into consideration`;
+    }
+    if (Cash == 0) {
+      message = `Dear Sir,
+    an amount is Due
+    BILL Rs *${Bill == 0 ? "00" : Bill}*
+    please take into consideration`;
+    }
+
     encodeURI(message);
     if (jsonData.length !== 0) {
       jsonData.find(({ NAME, NUMBER }) => {
