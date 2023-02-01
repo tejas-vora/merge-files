@@ -106,8 +106,12 @@ const Table = ({
                       >
                         <div>Dear Sir,</div>
                         <div>an amount is Due</div>
-                        <div>BILL Rs *{Bill == 0 ? "00" : Bill}*</div>
-                        <div>CASH Rs *{Cash == 0 ? "00" : Cash}*</div>
+                        {Bill != 0 && (
+                          <div>BILL Rs *{Bill == 0 ? "00" : Bill}*</div>
+                        )}
+                        {Cash != 0 && (
+                          <div>CASH Rs *{Cash == 0 ? "00" : Cash}*</div>
+                        )}
                         <div>please take into consideration</div>
                       </div>
                     </td>
